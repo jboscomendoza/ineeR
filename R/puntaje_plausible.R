@@ -65,7 +65,13 @@ puntaje_plausible <- function(tabla, sufijo, prefijo, peso_final, grupo = NULL){
 
   }
 
-  do.call(rbind, lapply(lis_grupo, varianza))
-
+  tabla_final <- do.call(rbind, lapply(lis_grupo, varianza))
+    
+  tabla_final <- cbind(Grupo = rownames(tabla_final),
+                       tabla_final)
+    
+  rownames(tabla_final) <- c()
+    
+  tabla_final
+  
 }
-
