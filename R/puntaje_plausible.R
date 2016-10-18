@@ -26,52 +26,47 @@ puntaje_plausible <- function(tabla, sufijo, prefijo, peso_final, grupo = NULL){
     grep(pattern = paste0("^PV.", sufijo, "$"),
          x = names(tabla),
          value = T)
-
+  
   lis_grupo <-
     lapply(vec_plausible, function(x){
       media_poblacion(tabla, x, prefijo, peso_final, grupo)
     })
-
+  
   tab_grupo <-
-    do.call(rbind,
-            lapply(lis_grupo, function(x){
-              grp <- row.names(x)
-              cbind(x, grp)})
-    )
-
+    do.call(rbind, lis_grupo)
+  
   lis_grupo <-
-    split(tab_grupo, tab_grupo$grp)
-
+    split(tab_grupo, tab_grupo$Grupo)
+  
   varianza <- function(df_plausible){
-
+    
     df_plausible$sample_var <- df_plausible$Error_estandar ^2
     df_plausible$imput_dif  <- df_plausible$Media - mean(df_plausible$Media)
-
+    
     media_plausible <-
       mean(df_plausible$Media)
-
+    
     error_plausible <-
       sqrt(
         mean(df_plausible$sample_var) +
           ( 1.2 * ( sum(df_plausible$imput_dif) / ( length(vec_plausible) - 1 ) ) )
       )
-
+    
     data.frame(
       Media = media_plausible,
       Error_estandar = error_plausible,
       Intervalo_superior = media_plausible + (1.96 * error_plausible),
       Intervalo_inferior = media_plausible - (1.96 * error_plausible)
     )
-
-  }
-
-  tabla_final <- do.call(rbind, lapply(lis_grupo, varianza))
     
+  }
+  
+  tabla_final <- do.call(rbind, lapply(lis_grupo, varianza))
+  
   tabla_final <- cbind(Grupo = rownames(tabla_final),
                        tabla_final)
-    
-  rownames(tabla_final) <- c()
-    
-  tabla_final
   
+  rownames(tabla_final) <- NULL
+  
+  tabla_final
 }
