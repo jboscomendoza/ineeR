@@ -29,9 +29,20 @@ multiples_variables <- function(tabla, variables, prefijo, peso_final, grupo = N
            function(cada_var){
              media_poblacion(tabla, cada_var, prefijo, peso_final, grupo)
            })
-
+  
   names(lis_grupos) <- variables
-
-  do.call(rbind, lista_grupos)
-
+  
+  tabla_final <- do.call(rbind, lis_grupos)
+  
+  tabla_final <- cbind(
+    Variable = gsub(pattern = ".[[:digit:]]$",
+                    replacement = "",
+                    x = rownames(tabla_final)),
+    tabla_final
+  )
+  
+  rownames(tabla_final) <- NULL
+  
+  tabla_final
+  
 }
