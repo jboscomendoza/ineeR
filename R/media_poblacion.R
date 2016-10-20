@@ -74,8 +74,8 @@ media_poblacion <-
       data.frame(
         Media = var_media_combi,
         Error_estandar = var_errorestandar,
-        Intervalo_superior = var_media_combi + (1.96 * var_errorestandar),
-        Intervalo_inferior = var_media_combi - (1.96 * var_errorestandar)
+        Intervalo_inferior = var_media_combi - (1.96 * var_errorestandar),
+        Intervalo_superior = var_media_combi + (1.96 * var_errorestandar)
       )
     }
     
@@ -95,10 +95,16 @@ media_poblacion <-
       tabla_final <- ee(tabla, variable, prefijo, peso_final)
     }
     
-    tabla_final <- cbind(Grupo = rownames(tabla_final),
+    tabla_final <- cbind(Variable = variable,
+                         Grupo = rownames(tabla_final),
                          tabla_final)
     
-    rownames(tabla_final) <- c()
+    if (is.null(grupo)) {
+      tabla_final$Grupo <- "Nacional"
+    }
+    
+    rownames(tabla_final) <- NULL
     
     tabla_final
   }
+
