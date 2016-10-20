@@ -35,11 +35,17 @@ multiples_variables <- function(tabla, variables, prefijo, peso_final, grupo = N
   tabla_final <- do.call(rbind, lis_grupos)
   
   tabla_final <- cbind(
-    Variable = gsub(pattern = ".[[:digit:]]$",
-                    replacement = "",
-                    x = rownames(tabla_final)),
+    Variable = rownames(tabla_final),
     tabla_final
   )
+  
+  if ( !is.null(grupo) ) {
+    tabla_final$Variable <- gsub(pattern = ".[[:digit:]]$",
+                                 replacement = "",
+                                 x = tabla_final$Variable)
+  } else {
+    tabla_final$Grupo <- "Nacional"
+  }
   
   rownames(tabla_final) <- NULL
   
