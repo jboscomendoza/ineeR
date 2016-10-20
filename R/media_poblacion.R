@@ -34,26 +34,18 @@ media_poblacion <-
       var_variable[is.na(var_variable)] <- mean(var_variable, na.rm = T)
       
       # Vector para iniciar media ponderadas
-      var_medias <- vector()
-      
-      # Contador para asignar a var_medias
-      contador = 1
+      var_medias <- NULL
       
       # Loop para generar los valores de var_medias
-      for(i in var_nombres) {
-        # Obtenemos el peso muestral
-        peso <- tabla[[i]]
-        
-        # Eliminamos NA
-        peso[is.na(peso)] <- 0
-        
+      lapply(var_nombres, function(nombre) {
+        peso <- tabla[[nombre]]
+        # Eliminamos NA, usando la media
+        peso[is.na(peso)] <- mean(peso, na.rm = T)
         # Valor a var_medias
-        var_medias[contador] <-
-          # Media ponderada de la variable con el peso
-          weighted.mean(var_variable, peso, na.rm = T)
-        # Incrementamos el contador hasta llegar al total de pesos
-        contador <- contador + 1
-      }
+        var_medias <<- c(var_medias, 
+                         # Media ponderada de la variable con el peso
+                         weighted.mean(var_variable, peso, na.rm = T))
+      })
       
       # Media ponderada con peso combinado
       var_media_combi <-
@@ -64,7 +56,7 @@ media_poblacion <-
         sqrt(
           sum(
             # Esta operacion esta vectorizada
-            (var_medias - var_media_combi)^2
+            ( var_medias - var_media_combi ) ^ 2
             # Este 25 es igual a 100 * (1 - 0.5) ^ 2, donde 100 es el numero de
             # pesos y 0.05 es el valor fijado para el coeficiente de Fey
           ) / 25
@@ -74,8 +66,8 @@ media_poblacion <-
       data.frame(
         Media = var_media_combi,
         Error_estandar = var_errorestandar,
-        Intervalo_inferior = var_media_combi - (1.96 * var_errorestandar),
-        Intervalo_superior = var_media_combi + (1.96 * var_errorestandar)
+        Intervalo_inferior = var_media_combi - ( 1.96 * var_errorestandar ),
+        Intervalo_superior = var_media_combi + ( 1.96 * var_errorestandar )
       )
     }
     
@@ -106,5 +98,6 @@ media_poblacion <-
     rownames(tabla_final) <- NULL
     
     tabla_final
+    
   }
 
