@@ -30,3 +30,35 @@ graf_resultado <- function(tabla_resultado) {
   }
   
 }
+
+hgraf_resultado <- function(tabla_resultado) {
+  if (
+    identical(names(tabla_resultado), 
+              c("Grupo", 
+                "Media", 
+                "Error_estandar", 
+                "Intervalo_superior", 
+                "Intervalo_inferior"))
+  ) {
+    plot(y = seq_along(tabla_resultado$Grupo),
+         x = tabla_resultado$Media, 
+         yaxt = "n",
+         xlim = c(min(tabla_resultado$Intervalo_inferior), 
+                  max(tabla_resultado$Intervalo_superior)),
+         ylab = "Grupo",
+         xlab = "Media",
+         pch = 16)
+    arrows(y0 = seq_along(tabla_resultado),
+           y1 = seq_along(tabla_resultado),
+           x0 = tabla_resultado$Intervalo_inferior, 
+           x1 = tabla_resultado$Intervalo_superior,
+           code = 3,
+           angle = 90,
+           length = .15)
+    axis(side = 2, 
+         at = seq_along(tabla_resultado$Grupo),
+         labels = tabla_resultado$Grupo, angle = 90)
+  } else {
+    stop("Tabla no valida")
+  }
+}
