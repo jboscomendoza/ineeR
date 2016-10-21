@@ -62,3 +62,39 @@ hgraf_resultado <- function(tabla_resultado) {
     stop("Tabla no valida")
   }
 }
+
+graf_porcentaje <- function(tabla_porcentaje) {
+  barra <- barplot(
+    height = tabla_porcentaje$Porcentaje,
+    names.arg = tabla_porcentaje$Grupo,
+    ylim = c(0, 
+             max(tabla_porcentaje$Intervalo_superior)),
+    xlab = "Grupo",
+    ylab = "Porcentaje"
+  )
+  arrows(x0 = barra,
+         x1 = barra,
+         y0 = tabla_porcentaje$Intervalo_inferior, 
+         y1 = tabla_porcentaje$Intervalo_superior,
+         code = 3,
+         angle = 90,
+         length = .15)
+}
+
+grafh_porcentaje <- function(tabla_porcentaje) {
+  barra <- barplot(horiz = T,
+    height = tabla_porcentaje$Porcentaje,
+    names.arg = tabla_porcentaje$Grupo,
+    xlim = c(0, 
+             max(tabla_porcentaje$Intervalo_superior)),
+    xlab = "Grupo",
+    ylab = "Porcentaje"
+  )
+  arrows(y0 = barra,
+         y1 = barra,
+         x0 = tabla_porcentaje$Intervalo_inferior, 
+         x1 = tabla_porcentaje$Intervalo_superior,
+         code = 3,
+         angle = 90,
+         length = .15)
+}
