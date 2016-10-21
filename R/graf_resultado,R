@@ -1,0 +1,32 @@
+graf_resultado <- function(tabla_resultado) {
+  if (
+    identical(names(tabla_resultado), 
+              c("Grupo", 
+                "Media", 
+                "Error_estandar", 
+                "Intervalo_superior", 
+                "Intervalo_inferior"))
+  ) {
+    plot(x = seq_along(tabla_resultado$Grupo),
+         y = tabla_resultado$Media, 
+         xaxt = "n",
+         ylim = c(min(tabla_resultado$Intervalo_inferior), 
+                  max(tabla_resultado$Intervalo_superior)),
+         xlab = "Grupo",
+         ylab = "Media",
+         pch = 16)
+    arrows(x0 = seq_along(tabla_resultado),
+           x1 = seq_along(tabla_resultado),
+           y0 = tabla_resultado$Intervalo_inferior, 
+           y1 = tabla_resultado$Intervalo_superior,
+           code = 3,
+           angle = 90,
+           length = .15)
+    axis(side = 1, 
+         at = seq_along(tabla_resultado$Grupo),
+         labels = tabla_resultado$Grupo)
+  } else {
+    stop("Tabla no valida")
+  }
+  
+}
