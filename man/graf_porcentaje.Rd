@@ -18,4 +18,3 @@ Genera una grafica a partir de una tabla creada con \strong{estimacion_porcentaj
 \author{
 Juan Bosco Mendoza Vega
 }
-

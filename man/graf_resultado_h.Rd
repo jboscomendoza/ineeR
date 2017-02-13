@@ -7,8 +7,8 @@
 graf_resultado_h(tabla_resultado)
 }
 \arguments{
-\item{tabla_resultado}{Tabla generada con \strong{media_poblacion} o
-\strong{puntuacion_plausible}.}
+\item{tabla_resultado}{Data frame generado con las funciones \strong{media_poblacion} o
+\strong{puntaje_plausible}.}
 }
 \value{
 Un objeto grafico con orientacion horizontal.
@@ -17,7 +17,18 @@ Un objeto grafico con orientacion horizontal.
 Genera una grafica a partir de una tabla creada con media_poblacion. Funciona
 con resultados de multiples grupos.
 }
+\examples{
+# Puntaje de Matematicas de Planea 2015 obtenido con
+\\strong{puntaje_plausible}
+planea2015
+
+resultados_mat <- puntaje_plausible(tabla = planea2015, sufijo = "MAT",
+prefijo = "W_FSTR", peso_final = "W_ALU")
+
+# Grafica
+graf_resultado(resultados_mat)
+
+}
 \author{
 Juan Bosco Mendoza Vega
 }
-

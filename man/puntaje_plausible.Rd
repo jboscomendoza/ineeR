@@ -27,6 +27,19 @@ con el metodo de puntuaciones plausibles. Para cada estudiante se estiman
 cinco puntuaciones plausibles, para incrementar la precision y reducir el
 error de estimacion debido al muestreo.
 }
+\examples{
+# Data frame con resultados de Planea 2015
+planea2015
+
+# Puntaje en Matematicas
+puntaje_plausible(tabla = planea2015, sufijo = "MAT", prefijo = "W_FSTR",
+peso_final = "W_ALU")
+
+# Puntaje en Matematicas por entidad
+puntaje_plausible(tabla = planea2015, sufijo = "MAT", prefijo = "W_FSTR",
+peso_final = "W_ALU", grupo = "NOM_ENT")
+
+}
 \references{
 OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second Edition. OECD.
 }

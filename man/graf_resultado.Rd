@@ -20,4 +20,3 @@ con resultados de multiples grupos.
 \author{
 Juan Bosco Mendoza Vega
 }
-
