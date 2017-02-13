@@ -27,10 +27,9 @@ con el metodo de puntuaciones plausibles. Para cada estudiante se estiman
 cinco puntuaciones plausibles, para incrementar la precision y reducir el
 error de estimacion debido al muestreo.
 }
-\author{
-Juan Bosco Mendoza Vega
-}
 \references{
 OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second Edition. OECD.
 }
-
+\author{
+Juan Bosco Mendoza Vega
+}

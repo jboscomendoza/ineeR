@@ -4,21 +4,34 @@
 \alias{estimacion_porcentaje}
 \title{Estimacion de porcentajes}
 \usage{
-estimacion_porcentaje(tabla, variable, prefijo, peso_final)
+estimacion_porcentaje(tabla, variable, prefijo, peso_final,
+  cifras_decimales = 2)
 }
 \arguments{
-\item{tabla}{data.frame con datos de Excale o Planea.}
+\item{tabla}{Data frame u objeto coercionable a data.frame con datos de Excale o Planea.}
 
-\item{variable}{Variable de agrupacion}
+\item{variable}{Cadena de texto con la variable de la que se estimaran porcentajes}
 
-\item{prefijo}{Prefijo de los pesos muestrales replicados}
+\item{prefijo}{Cadena de texto con el prefijo de las variables que contienen los pesos muestrales replicados}
 
-\item{peso_final}{Peso muestral combinado}
+\item{peso_final}{Cadena de texto con el nombre variable que contiene el peso muestral combinado}
+
+\item{cifras_decimales}{El numero de cifras decimales que se mostraran en los resultados.}
+}
+\value{
+Una Data frame que contiene la estimacion de porcentaje para el argumento variable, la estimacion del error estandar asociado a cada porcentaje y los limites inferior y superior de su intervalo de confianza al 95%.
 }
 \description{
-Estima porcentajes con su error estandar e intervalos de confianza al 95%.
+Estima porcentajes de variables, su error estandar e intervalos de confianza al 95%.
+}
+\examples{
+# Una Data frame con los resultados de Planea 2015
+planea2015
+
+estimacion_porcentaje(tabla = planea2015, variable = "SEXO",
+prefijo = "W_FSTR9", peso_final = "W_ALU", cifras_decimales = 4)
+
 }
 \author{
 Juan Bosco Mendoza Vega
 }
-
