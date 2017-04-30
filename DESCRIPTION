@@ -10,4 +10,4 @@ Description: Funciones para trabajar con las tablas de datos de Excale y
 	Plausibles.
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 6.0.0
+RoxygenNote: 6.0.1

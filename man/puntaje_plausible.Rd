@@ -9,39 +9,45 @@ puntaje_plausible(tabla, sufijo, prefijo, peso_final, grupo = NULL)
 \arguments{
 \item{tabla}{Data frame con una tabla de datos de Excale o Planea}
 
-\item{sufijo}{Cadena de texto que identifica un grupo de puntuaciones plausibles}
+\item{sufijo}{Cadena de texto que identifica un grupo de puntuaciones
+plausibles}
 
-\item{prefijo}{Cadena de texto que identifica a los pesos muestrales replicados}
+\item{prefijo}{Cadena de texto que identifica a los pesos muestrales
+replicados}
 
 \item{peso_final}{Peso final combinado}
 
-\item{grupo}{Variable de agrupacion. Ningun grupo por defecto}
+\item{grupo}{Cadena de texto con la variable de agrupacion. Pueden ser mas de
+un nivel de agrupacion. Por defecto, ninguna}
 }
 \description{
 Estima media poblacional, error estandar asociado limites superior e inferior
 del intervalo de confianza al 95%.
 }
 \details{
-Las puntuaciones poblacionales en Excale y Planea se calculan
-con el metodo de puntuaciones plausibles. Para cada estudiante se estiman
-cinco puntuaciones plausibles, para incrementar la precision y reducir el
-error de estimacion debido al muestreo.
+Las puntuaciones poblacionales en Excale y Planea se calculan con el
+  metodo de puntuaciones plausibles. Para cada estudiante se estiman cinco
+  puntuaciones plausibles, con el fin de incrementar la precision y reducir
+  el error de estimacion debido al muestreo. #'
 }
 \examples{
-# Data frame con resultados de Planea 2015
+# Data frame con resultados de Planea 2015.
 planea2015
 
-# Puntaje en Matematicas
+# Puntaje en Matematicas.
 puntaje_plausible(tabla = planea2015, sufijo = "MAT", prefijo = "W_FSTR",
 peso_final = "W_ALU")
 
-# Puntaje en Matematicas por entidad
+# Puntaje en Matematicas por entidad.
 puntaje_plausible(tabla = planea2015, sufijo = "MAT", prefijo = "W_FSTR",
 peso_final = "W_ALU", grupo = "NOM_ENT")
 
+# Es posible pedir puntajes por más de un nivel de agrupacion, pero esto produce estimaciones con errores altos.
+
 }
 \references{
-OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second Edition. OECD.
+OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second
+  Edition. OECD.
 }
 \author{
 Juan Bosco Mendoza Vega

@@ -7,23 +7,49 @@
 media_poblacion(tabla, variable, prefijo, peso_final, grupo = NULL)
 }
 \arguments{
-\item{tabla}{Data frame con una tabla de datos de Excale o Planea}
+\item{tabla}{Data frame con una tabla de datos de Excale o Planea.}
 
-\item{variable}{Variable a la que se estimara media poblacional}
+\item{variable}{Cadena de texto con el nombre de la  variable a la que se
+estimara media poblacional.}
 
-\item{prefijo}{Prefijo de los pesos muestrales replicados}
+\item{prefijo}{Cadena de texto con el prefijo de los pesos muestrales
+replicados.}
 
-\item{peso_final}{Peso muestral combinado}
+\item{peso_final}{Cadena de texto con el nombre de la variable con el peso
+muestral combinado.}
 
-\item{grupo}{Variable de agrupacion}
+\item{grupo}{Cadena de texto con el nombre de la variable de agrupacion.
+Pueden ser mas de una variable de agrupacion. Por defecto, ninguna.}
+}
+\value{
+Una Data frame que contiene la media poblacional de la variable
+  seleccionada , la estimacion del error estandar asociado a cada porcentaje
+  y los limites inferior y superior de su intervalo de confianza al 95%.
 }
 \description{
 Estima la media poblacional con error estandar e intervalos de confianza de
 de una variable. Es posible estimar medias por subpoblaciones usando una
 variable de agrupacion.
 }
+\examples{
+# Una Data frame con los resultados de Planea 2015
+planea2015
+
+# Porcentaje de Edad ("EDAD") con cuatro cifras decimales
+media_poblacional(tabla = planea2015, variable = "EDAD",
+prefijo = "W_FSTR", peso_final = "W_FSTUWT", cifras_decimales = 4)
+
+# Media de Edad ("EDAD"), agrupado por servicio educativo ("SERV")
+media_poblacional(tabla = planea2015, variable = "EDAD",
+prefijo = "W_FSTR", peso_final = "W_FSTUWT", grupo = "SERV")
+
+# Es posible estimar medias con mas de una variable de agrupacion, pero esto produce estimaciones con errores altos.
+#' media_poblacional(tabla = planea2015, variable = "EDAD",
+prefijo = "W_FSTR", peso_final = "W_FSTUWT", grupo = c("NOM_ENT", "SERV"))
+}
 \references{
-OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second Edition. OECD.
+OECD (2009) PISA Data Analysis Manual: SPSS and SAS, Second
+Edition. OECD.
 }
 \author{
 Juan Bosco Mendoza Vega
