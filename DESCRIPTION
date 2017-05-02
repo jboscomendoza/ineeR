@@ -3,10 +3,11 @@ Type: Package
 Title: Funciones para Trabajar con Excale y Planea
 Version: 0.1.0
 Authors@R: person("Bosco", "Mendoza", email = "jboscomendoza@gmail.com", role = c("aut", "cre"))
-Description: Funciones para trabajar con las tablas de datos de Excale y 
+Author: Juan Bosco Mendoza Vega [aut, cre],
+Description: Funciones para analizar las bases de datos de Excale y 
 	Planea. Se incluyen funciones para estimar porcentajes y medias 
 	poblacionales, con error estandar e intervalos de confianza. Existen 
-	funciones para variables ordinarias y variables con Puntuaciones 
+	funciones para estimaciones de variables regulares y variables con Puntuaciones 
 	Plausibles.
 License: MIT + file LICENSE
 LazyData: TRUE
