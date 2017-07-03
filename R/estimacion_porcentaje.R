@@ -75,6 +75,7 @@ estimacion_porcentaje <- function(tabla, variable, prefijo, peso_final, grupo = 
     if (is.null(grupo)) {
       tabla_final <- calculos(tabla)
     } else {
+      tabla[grupo][is.na(tabla[grupo])] <- "Perdidos"
       tabla_final <-  do.call(what = rbind,
                               args = lapply(split(tabla, tabla[grupo]), calculos))
     }
