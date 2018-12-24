@@ -1,14 +1,14 @@
 Package: ineeR
 Type: Package
-Title: Funciones para Trabajar con Excale y Planea
-Version: 0.1.0
+Title: Funciones para realizar estimaciones con datos de Excale y Planea
+Version: 1.0.0
 Authors@R: person("Bosco", "Mendoza", email = "jboscomendoza@gmail.com", role = c("aut", "cre"))
 Author: Juan Bosco Mendoza Vega [aut, cre]
-Description: Funciones para analizar las bases de datos de Excale y 
-	Planea. Se incluyen funciones para estimar porcentajes y medias 
-	poblacionales, con error estandar e intervalos de confianza. Existen 
-	funciones para estimaciones de variables regulares y variables con Puntuaciones 
-	Plausibles.
+Description: Funciones para realizar estimaciones de medias y proporciones con datos de Excale y Planea. Las estimaciones inlcuyen error estandar y limites inferior y superior del intervalo de confianza al 95 por ciento. Es posible estimar medias para variables con valores plausibles.
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
+Imports:
+  ggplot2
+Depends:
+  R (>= 2.10)
